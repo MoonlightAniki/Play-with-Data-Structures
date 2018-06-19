@@ -2,7 +2,7 @@ import java.util.Stack;
 
 // 20 Valid Parentheses
 // https://leetcode.com/problems/valid-parentheses/description/
-public class Solution {
+public class Solution20 {
     public boolean isValid(String s) {
         if (s == null || s.length() % 2 != 0) {
             return false;
@@ -24,7 +24,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Solution20 s = new Solution20();
         System.out.println(s.isValid("()[]{}"));
         System.out.println(s.isValid("){}[]("));
         System.out.println(s.isValid("(((())"));

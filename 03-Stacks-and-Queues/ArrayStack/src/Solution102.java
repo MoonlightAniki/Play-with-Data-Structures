@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +9,30 @@ import java.util.Queue;
 // https://leetcode.com/problems/binary-tree-level-order-traversal/description/
 public class Solution102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        Queue<Pair<TreeNode, Integer>> q = new LinkedList<>();//Pair的值表示当前处于第几层
+        q.add(new Pair<>(root, 0));
+        while (!q.isEmpty()) {
+            Pair<TreeNode, Integer> front = q.remove();
+            TreeNode node = front.getKey();
+            Integer level = front.getValue();
+            // 开始遍历下一层
+            if (level == res.size()) {
+                res.add(new ArrayList<>());
+            }
+            res.get(level).add(node.val);
+            if (node.left != null) {
+                q.add(new Pair<>(node.left, level + 1));
+            }
+            if (node.right != null) {
+                q.add(new Pair<>(node.right, level + 1));
+            }
+        }
+        return res;
+    }
+
+    public List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;
@@ -36,7 +62,6 @@ public class Solution102 {
         res.add(curList);
         return res;
     }
-
 
     private class DepthTreeNode {
         public TreeNode node;
