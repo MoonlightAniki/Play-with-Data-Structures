@@ -19,10 +19,10 @@ public class SegmentTree<E> {
 
     // 在treeIndex的位置创建表示区间[l...r]的线段树
     private void buildSegmentTree(int treeIndex, int l, int r) {
-//        if (l == r) {
-//            tree[treeIndex] = data[l];
-//            return;
-//        }
+        if (l == r) {
+            tree[treeIndex] = data[l];
+            return;
+        }
         int leftChild = leftChild(treeIndex);
         int rightChild = rightChild(treeIndex);
         int mid = l + (r - l) / 2;
